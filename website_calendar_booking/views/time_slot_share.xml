@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_management_asset_share_form" model="ir.ui.view">
+        <field name="name">time.slot.share.form</field>
+        <field name="model">time.slot.share</field>
+        <field name="arch" type="xml">
+            <form string="Time">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="slots" widget="many2many_tags"/>
+                        </group>
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="time_management_asset_share_tree" model="ir.ui.view">
+        <field name="name">time.slot.share.tree</field>
+        <field name="model">time.slot.share</field>
+        <field name="arch" type="xml">
+            <tree string="Time" editable="bottom">
+                <field name="name" required="1"/>
+                <field name="slots" widget="many2many_tags"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_time_mgmnt_share" model="ir.actions.act_window">
+        <field name="name">Share Time Frame</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">time.slot.share</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Table for the company
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem
+            action="action_time_mgmnt_share"
+            id= "time_managment_main_share_submenu"
+            parent= "website_calendar_booking.reservation_config_main_menu"
+            sequence= "2"
+            name= "Share Time Frame"
+            />
+
+
+
+</odoo>

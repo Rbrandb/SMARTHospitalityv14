@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="reservation.event.dashboard" id="reservation_event_dashboard_1">
+          <field name="name">Draft</field>
+          <field name="state">draft</field>
+          <field name="date_dash">2022-01-01</field>
+        </record>
+        <record model="reservation.event.dashboard" id="reservation_event_dashboard_2">
+          <field name="name">Confirm</field>
+          <field name="state">confirm</field>
+          <field name="date_dash">2022-01-02</field>
+        </record>
+        <record model="reservation.event.dashboard" id="reservation_event_dashboard_3">
+          <field name="name">Available</field>
+          <field name="state">available</field>
+          <field name="date_dash">2022-01-03</field>
+        </record>
+        <record model="reservation.event.dashboard" id="reservation_event_dashboard_4">
+          <field name="name">Reject</field>
+          <field name="state">reject</field>
+          <field name="date_dash">2022-01-04</field>
+        </record>
+<!--        <record model="reservation.event.dashboard" id="reservation_event_dashboard_5">-->
+<!--          <field name="name">Seat</field>-->
+<!--           <field name="state">seats</field>-->
+<!--           <field name="date_dash">2022-01-05</field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

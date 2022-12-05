@@ -1,0 +1,11 @@
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="point_of_sale.Chrome" t-inherit-mode="extension">
+       <xpath expr="//div[@class='pos-branding']/TicketButton" position="before">
+               <ReservationButton isTicketScreenShown="isReservationTicketScreenShown" />
+       </xpath>
+       <xpath expr="//div[@class='pos-rightheader']/TicketButton" position="before">
+           <ReservationButton isTicketScreenShown="isReservationTicketScreenShown" t-if="env.isMobile" />
+       </xpath>
+    </t>
+</templates>

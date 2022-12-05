@@ -1,0 +1,68 @@
+ .mb-0 {
+        font-size: 20px;
+        position: relative;
+        text-align: center;
+        padding: 2.2rem 16px;
+        margin: 0;
+        margin-bottom: 0px;
+        background: #ff8762;
+        color: #fff;
+    }
+  .mb-00 {
+        font-size: 20px;
+        position: relative;
+        text-align: center;
+        padding: 0.2rem 16px;
+        margin: 0;
+        margin-bottom: 0px;
+        background: #ff8762;
+        color: #fff;
+        width: 52px;
+    }
+
+  .spanbold{
+    font-weight: bolder;
+  }
+  .rowcss2{
+    position: absolute;
+    margin-left: 399px;
+    margin-top: 38px;
+  }
+  .rowcss{
+    height: 10px;
+    margin-left: 19px;
+    width: 108px;
+  }
+  .btn-width{
+    width:80px;
+    border-color: #B8D9D8 !important;
+  }
+ .kanban-circle {
+  border-radius: 50%;
+  width: 86px;
+  height: 86px;
+  padding: 8px;
+  background: #fff;
+  border: 2px solid #666;
+  color: #666;
+  font: 32px Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanban-circle hr {
+  width: 100%;
+  margin:0;
+  border: 1px solid #666;
+}
+.seats-color{
+    color: #7397a6;
+    font-size: 20px;
+    color: #ff8762;
+    margin-top: 2.3rem;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+

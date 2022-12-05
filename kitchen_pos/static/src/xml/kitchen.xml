@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+
+    <t t-name="Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('search-bar-portal')]" position="after">
+            <div class="ticket-button">
+                <div>
+                    <i class="fa fa-cutlery"/>
+                </div>
+                <div>
+                    <a class="input-button number-char btn-kitchen btn-kitchen-view">
+                        <span>KITCHEN</span>
+                    </a>
+                </div>
+                <script type="text/javascript" src="/kitchen_pos/static/src/js/kitchen.js" class="d-none"/>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr='//span[hasclass("product-name")]' position="replace"/>
+        <xpath expr="//span[hasclass('price')]" position="replace"/>
+        <xpath expr='//ul[hasclass("info-list")]' position="replace">
+            <div class="kitchen-order-line row">
+                <div class="col-lg-4 col-12">
+                    <div>
+                        <t t-if="props.line.get_quantity_str() !== '1' || props.line.selected ">
+                            <em>
+                                <t t-esc="props.line.get_quantity_str()"/>
+                            </em>
+                            <span>x</span>
+                        </t>
+                        <span>
+                            <t t-esc="props.line.get_full_product_name()"/>
+                            <span/>
+                            <t t-if="props.line.get_product().tracking!=='none' &amp;&amp; (env.pos.picking_type.use_create_lots || env.pos.picking_type.use_existing_lots)">
+                                <t t-if="props.line.has_valid_product_lot()">
+                                    <i t-on-click.stop="lotIconClicked"
+                                       class="oe_link_icon fa fa-list oe_icon line-lot-icon oe_green"
+                                       aria-label="Valid product lot"
+                                       role="img"
+                                       title="Valid product lot"/>
+                                </t>
+                                <t t-else="">
+                                    <i t-on-click.stop="lotIconClicked"
+                                       class="oe_link_icon fa fa-list oe_icon line-lot-icon oe_red"
+                                       aria-label="Invalid product lot"
+                                       role="img"
+                                       title="Invalid product lot"/>
+                                </t>
+                            </t>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="kitchen-food-description">
+                        <div t-esc="props.line.get_food_main_info()"/>
+                        <div t-esc="props.line.get_food_secondary_info()"/>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12">
+                    <div class="kitchen-order-line-price">
+                        <div>
+                            <t t-esc="env.pos.format_currency(props.line.get_display_price())"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div t-if="props.line.product.is_pack" style="margin: 10px 0;">
+                <t t-if="props.line.get_combo_products()">
+                    <div>
+                        <span class="fa fa-edit edit-combo" style="font-size: 19px;color: green; margin-left: 10px;"
+                              t-on-click="on_click"/>
+                    </div>
+                    <ul class="info-list">
+                        <t t-foreach="props.line.get_combo_products()" t-as="products">
+                            <t t-if="products != null">
+                                <span class="product-name" style="font-size: 15px;font-weight: 500;">
+                                    <t t-esc="products.display_name"/>
+                                    <span>&#032;</span><t t-esc="props.line.quantity"/><span>X</span>
+                                </span>
+                            </t>
+                        </t>
+                    </ul>
+                </t>
+            </div>
+            <div t-if="props.line.get_note()">
+                <li class="info orderline-note">
+                    <i class='fa fa-tag' role="img" aria-label="Note" title="Note"/>
+                    <t t-esc="props.line.get_note()"/>
+                </li>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-inherit="pos_restaurant.TableWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr='//div[hasclass("table")]' position="inside">
+            <div class="row table-details-mobile">
+                <div class="col-lg-6">
+                    <span>Table</span>
+                    <span t-esc="props.table.name" style="padding-left: 5px;"/>
+                </div>
+                <div class="col-lg-6">
+                    <span>Orders:</span>
+                    <span t-esc="orderCount" style="padding-left: 5px;"/>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="OrderKitchenButton" owl="1">
+        <span class="control-button js_load_kitchen_order">
+            <i class='fa fa-cutlery'/>
+            <span>Order</span>
+        </span>
+    </t>
+
+</template>

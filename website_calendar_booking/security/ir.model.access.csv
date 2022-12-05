@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_calendar,access_website_calendar,model_website_calendar,base.group_system,1,1,1,1
+access_website_calendar_timeframe,access_website_calendar_timeframe,model_website_calendar_timeframe,base.group_system,1,1,1,1
+access_website_calendar_public,access_website_calendar_public,model_website_calendar,,1,0,0,0
+access_website_calendar_timeframe_public,access_website_calendar_timeframe_public,model_website_calendar_timeframe,,1,0,0,0
+access_reservation_event,access_reservation_event,model_reservation_event,,1,1,1,1
+access_table_event,access_table_event,model_table_event,,1,1,1,1
+access_time_slot_event,access_time_slot_event,model_time_slot_event,,1,1,1,1
+access_table_time_slot,access_table_time_slot,model_table_time_slot,,1,1,1,1
+access_pax_person,access_pax_person,model_pax_person,,1,1,1,1
+access_reservation_event_dashboard,access_reservation_event_dashboard,model_reservation_event_dashboard,,1,1,1,1
+access_time_days_dashboard,access_time_days,model_time_days,,1,1,1,1
+access_time_share,access_time_slot_share,model_time_slot_share,,1,1,1,1
+access_time_slot_date,access_time_slot_date,model_time_slot_date,,1,1,1,1

@@ -1,0 +1,170 @@
+.pos .order {
+    padding: 0;
+}
+
+.pos .order .orderline {
+    border-bottom: 1px solid white;
+    padding: 0 15px;
+}
+
+.kitchen-order-line {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    background: grey;
+}
+
+.kitchen-order-line > div {
+    overflow: auto;
+    padding: 10px 0 !important;
+}
+
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -16px;
+    margin-left: -16px;
+    padding: 0 10px;
+}
+
+.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-12 {
+    position: relative;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .col-lg-6 {
+        flex: 0 0 49%;
+        max-width: 49%;
+    }
+    .col-lg-4 {
+        flex: 0 0 33.33333333%;
+        max-width: 33.33333333%;
+    }
+    .col-lg-2 {
+        flex: 0 0 16.66666667%;
+        max-width: 16.66666667%;
+    }
+}
+
+@media (min-width: 767px) {
+
+    .kitchen-order-line > div:nth-child(1),
+    .kitchen-order-line > div:nth-child(2) {
+        border-right: 1px solid;
+    }
+
+}
+
+.kitchen-order-line-price {
+    padding-left: 10px;
+    height: 100%;
+}
+
+.kitchen-food-description {
+    padding: 0 10px;
+}
+
+.btn-kitchen-view {
+    font-size: 16px !important;
+    color: white !important;
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
+}
+
+/* ------ ORDER NOTES ------- */
+
+.pos .order .orderline-note {
+    margin: 8px;
+}
+.orderline-note .fa {
+    opacity: 0.5;
+    margin-right: 4px;
+}
+
+.kitchen-pos-options {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.kitchen-pos-option {
+  width: 25px !important;
+  min-height: auto !important;
+  height: 25px !important;
+  margin-right: 0.5rem !important;
+  margin-bottom: 0.25rem !important;
+  box-shadow: none !important;
+  font-style: italic !important;
+}
+
+.kitchen-pos-title {
+    margin: 1rem 0 !important;
+    font-size: 18px !important;
+}
+
+.kitchen-popup-scroll {
+    height: 500px;
+    overflow: auto;
+}
+
+.table-details-mobile {
+    display: none;
+}
+
+@media (max-width: 767px) {
+
+    .floor-map .tables {
+        position: relative;
+        overflow-y: auto;
+        height: 99%;
+    }
+
+    .floor-map .tables .table {
+        width: 100% !important;
+        height: 75px !important;
+        top: unset !important;
+        left: unset !important;
+        border-radius: 0 !important;
+        position: sticky !important;
+        background-color: white !important;
+        border: 1px 0 solid lightgray !important;
+        margin: 0.25rem 0 !important;
+
+        .table-cover,
+        .order-count,
+        .table-seats,
+        .label {
+            display: none !important;
+        }
+    }
+
+    .table-details-mobile {
+        display: flex !important;
+        font-weight: bold;
+        color: #875A7B;
+        line-height: 75px;
+
+        span {
+            font-size: 18px !important;
+        }
+
+    }
+
+    .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+}

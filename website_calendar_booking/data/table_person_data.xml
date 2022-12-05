@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="table.person" id="table_person_1">
+          <field name="number">1</field>
+        </record>
+        <record model="table.person" id="table_person_2">
+          <field name="number">2</field>
+        </record>
+        <record model="table.person" id="table_person_3">
+          <field name="number">3</field>
+        </record>
+        <record model="table.person" id="table_person_4">
+          <field name="number">4</field>
+        </record>
+    </data>
+</odoo>

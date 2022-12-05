@@ -1,0 +1,45 @@
+.clickable_time{
+    padding: 6px 11px;
+    background: #FFFFFF;
+    font-size: 14px;
+    color: #555555;
+    text-align: center;
+    border: 1px solid #979797;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 4px;
+}
+.notclickable{
+  padding: 6px 11px;
+  background: #e9ecef;
+  font-size: 14px;
+  color: #555555;
+  text-align: center;
+  border: 1px solid #979797;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: line-through;
+  display: inline-block;
+  margin: 4px;
+}
+.book_calendar_table {
+  width:100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.book_calendar_table td {
+  padding-left: 5px;
+  border: 1px solid black;
+}
+
+.book_calendar_table th {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.wcb_back_event {
+  color: #FFFFFF;
+}

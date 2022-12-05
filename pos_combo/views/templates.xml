@@ -1,0 +1,14 @@
+<odoo>
+    <template id="assets_for_pos_product_bundle_pack" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/pos_combo/static/src/js/pos_combo.js"/>
+            <script type="text/javascript" src="/pos_combo/static/src/js/ProductCategoriesWidget.js"/>
+            <script type="text/javascript" src="/pos_combo/static/src/js/ProductScreen.js"/>
+            <script type="text/javascript" src="/pos_combo/static/src/js/ClientScreenExtend.js"/>
+            <script type="text/javascript" src="/pos_combo/static/src/js/SelectComboProductPopupWidget.js"/>
+            <script type="text/javascript" src="/pos_combo/static/src/js/OrderWidgetExtended.js"/>
+            <script type="text/javascript" src="/pos_combo/static/src/js/ProductListWidget.js"/>
+            <link rel="stylesheet" href="/pos_combo/static/src/css/custom.css"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="pax_person_asset_tree" model="ir.ui.view">
+        <field name="name">pax.person.tree</field>
+        <field name="model">pax.person</field>
+        <field name="arch" type="xml">
+            <tree string="Number of Persons" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_pax_person_mgmnt" model="ir.actions.act_window">
+        <field name="name">Number of Persons</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pax.person</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Table for the company
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            action="action_pax_person_mgmnt"
+            id= "pax_person_main_submenu"
+            parent= "website_calendar_booking.reservation_config_main_menu"
+            sequence= "1"
+            name= "Number of Persons"
+            />
+
+
+
+</odoo>

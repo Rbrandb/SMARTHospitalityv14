@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--        <record id="menu_rervation" model="website.menu">-->
+<!--            <field name="name">Reservation</field>-->
+<!--            <field name="url">/book/calendar/1</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="sequence" type="int">20</field>-->
+<!--        </record>-->
+
+        <record id="menu_rervation_main" model="website.menu">
+            <field name="name">Reservation</field>
+            <field name="url">/book/calendar</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">20</field>
+        </record>
+
+        <record id="seq_reservation_order" model="ir.sequence">
+            <field name="name">Reservation</field>
+            <field name="code">reservation.event</field>
+            <field name="prefix">R</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

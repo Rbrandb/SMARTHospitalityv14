@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="open_reservation_modules" model="ir.actions.act_window">
+            <field name="name">Reservation</field>
+            <field name="res_model">ir.module.module</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context" eval="{'search_default_name': 'Reservation'}"/>
+            <field name="search_view_id" ref="base.view_module_filter"/>
+        </record>
+
+        <record id="res_config_settings_view_form_reservation" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.hr.reservation</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="45"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Reservation" string="Reservation"
+                         data-key="website_calendar_booking"
+                         >
+                        <h2>Reservation</h2>
+                        <div class="row mt16 o_settings_container" id="reservation">
+                            <div class="col-lg-6 col-12 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                     <field name="module_allow_auto_validation"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_allow_auto_validation" string="Allow Auto Validation"/>
+                                    <div class="text-muted">
+                                        Allow Auto Validation
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-12 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                     <field name="module_allow_auto_mail"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_allow_auto_mail" string="Allow Auto Email"/>
+                                    <div class="text-muted">
+                                        Allow Auto Email
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt16 o_settings_container" id="reservation_reminder">
+                            <div class="col-lg-6 col-12 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                     <field name="module_allow_auto_reminder"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_allow_auto_reminder" string="Allow Auto Reminder"/>
+                                    <div class="text-muted">
+                                        Auto Reminder
+                                    </div>
+                                    <div class="mt8">
+                                        <label for="day" string="Days Before" attrs="{'invisible': [('module_allow_auto_reminder', '=', False)]}"/>
+                                        <field name="day" attrs="{'invisible': [('module_allow_auto_reminder', '=', False)]}"/>
+                                        <br></br>
+                                        <label for="time" string="Hours before" attrs="{'invisible': [('module_allow_auto_reminder', '=', False)]}"/>
+                                        <field name="time" widget="float_time" attrs="{'invisible': [('module_allow_auto_reminder', '=', False)]}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-12 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                     <field name="allow_seats"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="allow_seats" string="Amount of Seats Available"/>
+                                    <div class="text-muted">
+                                        Amount of Seats Available
+                                    </div>
+                                    <div class="mt8">
+                                        <label for="seats" string="Total Seats" attrs="{'invisible': [('allow_seats', '=', False)]}"/>
+                                        <field name="seats" attrs="{'invisible': [('allow_seats', '=', False)]}"/>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt16 o_settings_container" id="reservation_buffer">
+                            <div class="col-lg-6 col-12 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                     <field name="allow_buffer"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="allow_buffer" string="Place Buffer Time Frame"/>
+                                    <div class="text-muted">
+                                        Place Buffer Time Frame
+                                    </div>
+                                    <div class="mt8">
+                                        <label for="buffer" string="Buffer Time Frame" attrs="{'invisible': [('allow_buffer', '=', False)]}"/>
+                                        <field name="buffer" widget="float_time" attrs="{'invisible': [('allow_buffer', '=', False)]}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-12 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <div class="text-muted">
+                                    </div>
+                                    <div class="mt8">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!--                        <div class="row mt16 o_settings_container" id="reservation">-->
+<!--                            <div class="col-12 col-lg-6 o_setting_box" id="validation_auto" title="Automatically Validates Reservation">-->
+<!--                                <div class="o_setting_left_pane">-->
+<!--                                    <field name="module_allow_auto_validation"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-12 col-lg-6 o_setting_box" id="auto_mail" title="Automatically Validates Reservation">-->
+<!--                                <div class="o_setting_left_pane">-->
+<!--                                    <field name="module_allow_auto_mail"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_reservation_community_configuration" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'website_calendar_booking'}</field>
+        </record>
+
+        <menuitem id="menu_reservation_global_settings" name="Settings"
+                  parent="website_calendar_booking.reservation_config_main_menu"
+                  sequence="1"
+                  action="action_reservation_community_configuration"
+                  />
+</odoo>

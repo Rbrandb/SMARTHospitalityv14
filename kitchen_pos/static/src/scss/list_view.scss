@@ -1,0 +1,128 @@
+.kitchen-table thead {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+
+  th {
+    padding: 9px !important;
+  }
+
+}
+
+.kitchen-table thead * {
+    color: white !important;
+}
+
+.kitchen-table tbody {
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background-color: #d3d3d34d;
+}
+
+.kitchen-screen .page-item.active .page-link,
+.bar-screen .page-item.active .page-link {
+  background: #875A7B !important;
+}
+
+.kitchen-td-product:hover {
+  background: #875A7B;
+  color: white;
+}
+
+.hot-kitchen-bg {
+  background: #B90100;
+}
+
+.cold-kitchen-bg {
+  background: #00A09D;
+}
+
+.hot-kitchen-cl {
+  color: #B90100;
+  opacity: 0.75;
+}
+
+.cold-kitchen-cl {
+  color: #00A09D;
+  opacity: 0.75;
+}
+
+.kitchen-item {
+    font-size: 16px;
+    padding: 1.5rem;
+    border-style: inset;
+    text-align: center;
+    font-weight: bold;
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+    align-items: center;
+}
+
+.kitchen-ready-item {
+    color: white;
+    background: #875A7B;
+}
+
+.kitchen-togo-item {
+    color: white;
+    background: #00A09D;
+}
+
+
+.o_kitchen_order_item .o_notification_counter {
+    margin-top: -0.8rem;
+    margin-right: 0;
+    margin-left: -0.6rem;
+    background: #00A09D;
+    color: white;
+    vertical-align: super;
+    font-size: 0.7em;
+}
+
+.list_reload .o_list_table > thead {
+    display: none !important;
+}
+
+.list_reload .o_list_record_selector {
+    display: none !important;
+}
+
+.list_reload .table-striped tbody tr:nth-of-type(odd) {
+ background-color: none !important;
+}
+
+.list_reload .o_data_row > td {
+    width: 100% !important;
+    padding: 0 16px !important;
+    margin: 0 !important;
+    border: 1px solid white !important;
+    background-color: white;
+
+    &:focus, &:hover {
+        background-color: white !important;
+    }
+}
+
+.list_reload .o_list_table > tbody > tr:not(:first-child) {
+    display: none !important;
+}
+
+.list_reload > .table-responsive {
+    background: white;
+    height: 100%;
+}
+
+.special-text {
+    width: 5%;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-size: 13px;
+}
+
+.rest-content {
+    width: 95%;
+}

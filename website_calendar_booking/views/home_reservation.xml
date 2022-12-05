@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="home_reservation" name="Home">
+          <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+              <section class="s_parallax bg-black-50 o_colored_level s_parallax_no_overflow_hidden o_half_screen_height oe_img_bg" data-scroll-background-ratio="0" data-snippet="s_parallax" data-name="Parallax" style="background-position: 0% 42.9794%; background-image: url(&quot;/web/image/1086-418f400b/pexels-cottonbro-7609119.jpg&quot;);" data-original-id="1063" data-original-src="/web/image/1063-730c2160/pexels-cottonbro-7609119.jpg" data-mimetype="image/jpeg" data-resize-width="1920">
+                <div class="oe_structure oe_empty" data-editor-message="DRAG BUILDING BLOCKS HERE"/>
+              </section>
+              <section class="s_features pt32 pb32 o_colored_level" data-snippet="s_features" data-name="Features">
+                <div class="container">
+                  <div class="row">
+                    <div class="pt32 pb32 text-center o_colored_level col-lg-6">
+                      <a href="/book/Lunch/1">
+                        <img src="/website_calendar_booking/static/src/img/lunch8.png" loading="lazy" style=""/>
+                      </a>
+                      <h3>Lunch</h3>
+                    </div>
+                    <div class="pt32 pb32 text-center o_colored_level col-lg-6">
+                      <a href="/book/Dinner/1">
+                        <img src="/website_calendar_booking/static/src/img/dinner64.png" loading="lazy" style=""/>
+                      </a>
+                      <h3 class="o_default_snippet_text">Dinner</h3>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </t>
+        </template>
+
+        <template id="personal_info">
+            <t t-call="website.layout">
+                <t t-set="additional_title">Fill Personal Information</t>
+                <div id="wrap">
+                    <div class="container">
+                        <div class="call_mundo" style="text-align: center;"><h4>For reservations with more than 6 guests please call us on <span t-esc="order['spancompanyphone']"/> </h4></div>
+                         <form id="personinfo" method="GET" action="/book/personalinfo">
+                             <div class="form-group">
+                                <label for="name">Name*</label>
+                                <input name="name" id="name" type="text" class="form-control" t-attf-value="#{order['name']}" required="1"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email*</label>
+                                <input name="email" id="email" type="email" t-attf-value="#{order['email']}" class="form-control" required="1"/>
+                            </div>
+                             <div class="form-group">
+                                <label for="phone">Your Phone*</label>
+                                <input name="phone" id="phone" type="text" t-attf-value="#{order['phone']}" class="form-control" required="1"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pax">Persons*</label>
+                                <div class="call_mundo" style="text-align: center;display: none;"><h4 style="color:red">For reservations with more than 6 guests please call us on <span id="spanphone"/> </h4></div>
+                                <select name="Pax" class="form-control" id="Pax">
+                                    <option class="form-control" t-att-value="1" ><t t-esc="1"/></option>
+                                    <option class="form-control" t-att-value="2"><t t-esc="2"/></option>
+                                    <option class="form-control" t-att-value="3"><t t-esc="3"/></option>
+                                    <option class="form-control" t-att-value="4"><t t-esc="4"/></option>
+                                    <option class="form-control" t-att-value="5"><t t-esc="5"/></option>
+                                    <option class="form-control" t-att-value="6"><t t-esc="6"/></option>
+    <!--                                <option class="form-control" t-att-value="morethan6"><span>More than 6</span></option>-->
+                                </select>
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <label for="comment">Special Occasions?</label>
+                                <textarea id="comment" name="comment" class="form-control"/>
+                                <span id="spocc" style="color: #0f0;font-weight: 700;display: none;" >We will do the best we can to honor your request and make your evening a great experience</span>
+                            </div>
+                             <input type="hidden" name="date_span" id="date_span" t-attf-value="#{order['date_span']}"/>
+                             <input type="hidden" name="start_timeslot" id="start_timeslot" t-attf-value="#{order['start_timeslot']}"/>
+                             <input type="hidden" name="browser_info" id="browser_info" t-attf-value="#{order['browser_info']}"/>
+                             <input type="hidden" name="Type" id="Type" t-attf-value="#{order['Type']}"/>
+                             <input type="hidden" name="start" id="start" t-attf-value="#{order['start']}"/>
+                             <input type="hidden" name="calendar_id" id="calendar_id" t-attf-value="#{order['calendar_id']}"/>
+                            <input type="submit" class="btn btn-primary btn-lg subbtn" value="Confirm Reservation"/>
+                         </form>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="error_confirmation">
+            <t t-call="website.layout">
+                <t t-set="additional_title">400 | Reservation</t>
+                <div id="wrap">
+                    <div class="container">
+                        <h1 class="mt-5">Oops! Something went wrong.</h1>
+                        <p>Take a look at the error message below.</p>
+                    </div>
+                    <div class="container accordion mb32 mt32">
+                        <div class="card">
+                            <h4 class="card-header">
+                                <a data-toggle="collapse" href="#error_main">Error</a>
+                            </h4>
+                            <div class="collapse show">
+                                <div class="card-body">
+                                    <p>
+                                        <b>Error message:</b>
+                                    </p>
+                                    <p style="color:brown;">
+                                        It seems that you already have a reservation for this day. Would you like to cancel your first reservation?
+                                        <a t-attf-href="/book/cancel/#{order.id}">yes</a>.Otherwise call us at <span t-esc="phone"/> to make another reservation on the same day.
+                                    </p>
+
+                                </div>
+                                <div class="oe_structure mt-3" id="oe_structure_rental_ecommerce_confirmation_2"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="confirmation">
+            <t t-call="website.layout">
+                <t t-set="additional_title">Booking - Confirmed</t>
+                <div id="wrap">
+                <div class="container oe_rental_ecommerce py-2">
+                    <h1><span>Reservation code</span> <em t-field="order.code" /></h1>
+                    <h6>
+                        <p style="background-color:#AFEEEE;color:#1E6C52;padding: 7px;padding-left: 32px;">
+                            Your reservation has been sent successfully.
+                        </p>
+                    </h6>
+
+                    <div class="row">
+                        <div class="col-12 col-xl">
+                            <div class="oe_cart">
+
+                                    <div class="thanks_msg">
+                                        <h6 style="color: #74effc">Thank you for making your reservation at Mundo Bizarro.</h6>
+                                    </div>
+
+
+                                <div class="card mt-3">
+                                  <div class="card-body">
+                                      <div class="row">
+                                        <div class="col-lg-4">When:</div>
+                                        <div class="col-lg-4"><span t-esc='order.date_str' class="address-inline"/></div>
+                                      </div>
+                                      <div class="oe_structure clearfix mt-3" id="oe_structure_website_sale_confirmation_1"/>
+                                       <div class="clearfix" />
+                                      <div class="row">
+                                        <div class="col-lg-4">Description:</div>
+                                        <div class="col-lg-4">
+                                            <ul>
+                                                <li><span>Mobile: </span><span t-esc='order.phone' class="address-inline"/></li>
+                                                <li><span>Email: </span><span t-esc='order.booking_email' class="address-inline"/></li>
+                                                <li><span>Persons: </span><span t-esc='order.pax' class="address-inline"/></li>
+<!--                                                <li><span>Special Occassions: </span><span t-esc='order.description' class="address-inline"/></li>-->
+                                            </ul>
+                                        </div>
+                                      </div>
+                                      <p style="color:red;">For cancellation of the reservation, please call the restaurant a minimum of two hours before the reservation time.
+                                </p>
+                                  </div>
+                                </div>
+                                <div class="oe_structure mt-3" id="oe_structure_rental_ecommerce_confirmation_2"/>
+                            </div>
+                        </div>
+<!--                        <div class="col-12 col-xl-auto">-->
+<!--                            <t t-set="rental_ecommerce_order" t-value="order"/>-->
+<!--                            <t t-call="rental_ecommerce.cart_summary">-->
+<!--                                <t t-set="hide_coupon" t-value="1"/>-->
+<!--                            </t>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-xl">
+                            <h6>
+<!--                                <p style="color:#1E6C52;">Your reservation has been received and will be confirmed and an email will be sent to you.-->
+<!--                                <p style="color:fuchsia;">Your reservation has been received and will be confirmed and then an email will be sent to you.-->
+                                <p style="color:#74effc;">Your reservation has been received and will be confirmed and then an email will be sent to you.
+                                </p>
+                            </h6>
+                        </div>
+                        <div class="col-6 col-xl">
+                            <a t-attf-href="/book/cancel/#{order.id}"
+                               class="btn btn-primary"
+                               style="width: 72%;border-radius: 51px;
+                               background:red;color:white;font-weight: bold;">x Cancel / Reschedule</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure" id="oe_structure_rental_ecommerce_confirmation_3"/>
+            </div>
+            </t>
+        </template>
+
+        <template id="cancellation">
+            <t t-call="website.layout">
+                <t t-set="additional_title">Booking - Cancelled</t>
+                <div id="wrap">
+                <div class="container oe_rental_ecommerce py-2">
+                    <div class="card mt-3">
+                      <div class="card-body">
+                          <div class="row">
+                            <div class="thanks_msg col-6 col-xl">
+                                <h6 style="color: navy"><em t-field="order.name" /> your reservation has been cancelled successfully.</h6>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            </t>
+        </template>
+
+
+    </data>
+
+</odoo>

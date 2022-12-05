@@ -1,0 +1,191 @@
+<odoo>
+    <record id="channel_dashboard_kanban_view" model="ir.ui.view">
+      <field name="name">reservation.event.dashboard.view</field>
+      <field name="model">reservation.event.dashboard</field>
+      <field name="arch" type="xml">
+        <kanban class="oe_background_grey o_kanban_dashboard o_salesteam_kanban o_project_kanban " create="0">
+           <field name="auto_delete_reservation"/>
+           <field name="complete_name"/>
+           <field name="number_of_draft"/>
+           <field name="number_of_confirm"/>
+           <field name="number_of_free"/>
+           <field name="number_of_reject"/>
+           <field name="seats"/>
+           <field name="total_seats"/>
+           <field name="draft_date"/>
+           <field name="confirm_date"/>
+           <field name="free_date"/>
+           <field name="reject_date"/>
+           <field name="name"/>
+           <field name="state"/>
+           <templates>
+              <span t-name="kanban-box"> <!-- Use <t> tag instead of <span> for color change -->
+                 <div t-attf-class="kanban_color} ">
+                    <div class="o_project_kanban_main" >
+                      <div class="o_kanban_card_content o_visible">
+                          <div class="o_kanban_primary_left" >
+                              <div class="">
+                                  <center>
+                                     <span>
+                                        <span t-field="record.name"/>
+                                      </span>
+                                  </center>
+                              </div>
+                              <div class="row">
+                                  <div class="mb-0" >
+                                      <span t-if="record.state.raw_value == 'draft'" t-esc="record.number_of_draft.raw_value"/>
+                                      <span t-if="record.state.raw_value == 'confirm'" t-esc="record.number_of_confirm.raw_value"/>
+                                      <span t-if="record.state.raw_value == 'reject'" t-esc="record.number_of_reject.raw_value"/>
+                                      <span t-if="record.state.raw_value == 'available'" t-esc="record.number_of_free.raw_value"/>
+<!--                                      <span class="kanban-circle" t-if="record.state.raw_value == 'seats'" t-esc="record.seats.raw_value"/>-->
+                                      <span class="kanban-circle" t-if="record.state.raw_value == 'seats'" >
+                                        <span t-esc="record.seats.raw_value"/>
+                                        <hr/>
+                                        <span t-esc="record.total_seats.raw_value"/>
+                                      </span>
+
+                                  </div>
+<!--                                  <t t-if="record.state.raw_value == 'seats'">-->
+<!--                                     <span class="kanban-circle">-->
+<!--                                      <span>90</span>-->
+<!--                                      <hr/>-->
+<!--                                      <span>100</span>-->
+<!--                                    </span>-->
+<!--                                  </t>-->
+                                  <div>
+                                      <center>
+                                          <button t-if="record.state.raw_value == 'draft'" class="btn btn-primary" type="object" string="Reservation"
+                                                    name="open_action" ><span title="New "> New</span></button>
+
+
+
+                                       <button t-if="record.state.raw_value == 'confirm'" class="btn btn-primary"
+                                               type="object" string="Reservation"
+                                                name="open_confirmed_action" >
+                                           <span title="Confirm ">
+                                               Confirm </span>
+                                       </button>
+
+                                          <button t-if="record.state.raw_value == 'reject'" class="btn btn-primary"
+                                           type="object" string="Reservation"
+                                            name="open_reject_action" >
+                                            <span title="Cancelled">
+                                            Cancelled</span></button>
+
+                                          <button t-if="record.state.raw_value == 'available'" class="btn btn-primary"
+                                           type="object" string="Reservation"
+                                            name="open_available_action" >
+                                            <span title="Free">
+                                           Free</span></button>
+
+                                          <span t-if="record.state.raw_value == 'seats'"
+                                                string="Reservation">
+                                                <span class="spanbold" t-esc="record.complete_name.raw_value"/>
+                                                <br></br>
+                                              <span class="seats-color">
+                                               <span>Seats Available</span><hr/><span>Total Seats</span>
+                                              </span>
+                                          </span>
+
+                                      </center>
+                                  </div>
+                                  <div class="row rowcss" t-if="record.state.raw_value == 'seats'">
+                                      <div>
+                                          <div class="row">
+                                              <div class="mb-00" >
+                                                <span t-if="record.state.raw_value == 'seats'" t-esc="record.draft_date.raw_value"/>
+                                              </div>
+                                                    <button context="{'state': 'draft'}" t-if="record.state.raw_value == 'seats'" class="btn btn-primary btn-width oe_inline" type="object" string="Reservation"
+                                                            name="open_datewise_action" ><span title="New "> New</span></button>
+                                          </div>
+                                          <div class="row">
+    <!--                                      <div class="col">-->
+                                              <div class="mb-00" >
+                                                <span t-if="record.state.raw_value == 'seats'" t-esc="record.confirm_date.raw_value"/>
+                                              </div>
+                                                <button context="{'state': 'confirm'}" t-if="record.state.raw_value == 'seats'" class="btn btn-primary btn-width oe_inline" type="object" string="Reservation"
+                                                        name="open_datewise_action" ><span title="Confirm "> Confirm</span></button>
+                                          </div>
+                                      </div>
+<!--                                  </div>-->
+<!--                                  <div class="row rowcss2" t-if="record.state.raw_value == 'seats'">-->
+                                      <div>
+                                          <div class="row">
+                                              <div class="mb-00" >
+                                                <span t-if="record.state.raw_value == 'seats'" t-esc="record.free_date.raw_value"/>
+                                              </div>
+                                                <button t-if="record.state.raw_value == 'seats'" class="btn btn-primary btn-width oe_inline" type="object" string="Reservation"
+                                                      context="{'state': 'available'}"  name="open_datewise_action" ><span title="Free "> Free</span></button>
+                                          </div>
+                                          <div class="row">
+                                              <div class="mb-00" >
+                                                <span t-if="record.state.raw_value == 'seats'" t-esc="record.reject_date.raw_value"/>
+                                              </div>
+                                                <button t-if="record.state.raw_value == 'seats'" class="btn btn-primary btn-width oe_inline" type="object" string="Reservation"
+                                                   context="{'state': 'reject'}" name="open_datewise_action" ><span title="Reject"> Reject</span></button>
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                 </div>
+
+              </span>
+
+            </templates>
+        </kanban>
+      </field>
+    </record>
+    <record id="reservationt_dasboard_asset_search" model="ir.ui.view">
+            <field name="name">reservation.event.dashboard.search.view</field>
+            <field name="model">reservation.event.dashboard</field>
+            <field name="arch" type="xml">
+                <search string="Reservation">
+
+                    <filter name="active" string="Active" domain="[('inactive', '=', False)]"/>
+                    <filter name="inactive" string="Archived" domain="[('inactive', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+    <record id="channel_dashboard_form_view" model="ir.ui.view">
+        <field name="name">reservation.event.dashboard.form.view</field>
+        <field name="model">reservation.event.dashboard</field>
+        <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+                       <field name="color"/>
+                       <field name="name"/>
+                       <field name="complete_name"/>
+                       <field name="new_dash"/>
+                       <field name="date_dash"/>
+                       <field name="state"/>
+                       <field name="total_seats"/>
+                       <field name="seats"/>
+                       <field name="total_seats_amount"/>
+                       </group>
+                   </sheet>
+              </form>
+         </field>
+     </record>
+
+    <record id="custom_sales_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">reservation.event.dashboard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="binding_view_types">form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="domain">['|', ('inactive', '=', True), ('inactive', '=', False)]</field>
+         <field name="search_view_id" ref="reservationt_dasboard_asset_search"/>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <menuitem id="menu_sales_config_inherited"
+              parent="website_calendar_booking.reservation_management_main_menu"
+              sequence= "1"
+              name= "Dashboard" action="custom_sales_dashboard_action"/>
+
+</odoo>

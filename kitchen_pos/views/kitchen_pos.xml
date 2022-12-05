@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="kitchen_pos_order_tree_view" model="ir.ui.view">
+            <field name="name">kitchen.pos.order.tree</field>
+            <field name="model">kitchen.pos.order</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit='false' delete="false" js_class="list_reload" class="list_reload" limit="1"
+                      editable="bottom">
+                    <field name="kitchen" widget="html" class="py-5 kitchen_lo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="kitchen_action_1">
+            <field name="name">Kitchen Hot &amp; Cold Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kitchen.pos.order</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'type': 1}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="kitchen_action_2">
+            <field name="name">Kitchen Hot Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kitchen.pos.order</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'type': 2}</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="kitchen_action_3">
+            <field name="name">Kitchen Cold Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kitchen.pos.order</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'type': 3}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="kitchen_action_4">
+            <field name="name">Bar Hot &amp; Cold Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kitchen.pos.order</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'type': 4}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="kitchen_action_waiter">
+            <field name="name">Ready Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kitchen.pos.order</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'type': 5}</field>
+        </record>
+
+        <menuitem name="Kitchen" id="kitchen_menu"
+                  web_icon="kitchen_pos,static/description/icon.png"/>
+
+        <menuitem name="Kitchen Screen" id="kitchen_pos_menu" action="kitchen_action_1"
+                  parent="kitchen_menu" sequence="1" groups="kitchen_pos.group_kitchen_screen"/>
+
+        <menuitem name="Kitchen Hot Screen" id="kitchen_hot_pos_menu" action="kitchen_action_2"
+                  parent="kitchen_menu" sequence="2" groups="kitchen_pos.group_kitchen_screen"/>
+
+        <menuitem name="Kitchen Cold Screen" id="kitchen_cold_pos_menu" action="kitchen_action_3"
+                  parent="kitchen_menu" sequence="3" groups="kitchen_pos.group_kitchen_screen"/>
+
+        <menuitem name="Bar Screen" id="bar_pos_menu" action="kitchen_action_4"
+                  parent="kitchen_menu" sequence="4" groups="kitchen_pos.group_bar_screen"/>
+
+        <menuitem name="Waiter Screen" id="waiter_screen_menu" action="kitchen_action_waiter"
+                  parent="kitchen_menu" sequence="5" groups="kitchen_pos.group_waiter"/>
+
+    </data>
+</odoo>

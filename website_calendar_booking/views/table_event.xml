@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="table_management_asset_tree" model="ir.ui.view">
+        <field name="name">table.event.tree</field>
+        <field name="model">table.event</field>
+        <field name="arch" type="xml">
+            <tree string="Table" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_table_mgmnt" model="ir.actions.act_window">
+        <field name="name">Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">table.event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Table for the company
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="reservation_config_main_menu"
+            name="Configuration"
+            parent="website_calendar_booking.reservation_management_main_menu"
+        />
+
+<!--    <menuitem-->
+<!--            action="action_table_mgmnt"-->
+<!--            id= "table_managment_main_submenu"-->
+<!--            parent= "reservation_config_main_menu"-->
+<!--            sequence= "1"-->
+<!--            name= "Table"-->
+<!--            />-->
+
+
+
+</odoo>

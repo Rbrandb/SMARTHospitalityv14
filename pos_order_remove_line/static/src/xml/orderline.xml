@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright 2019 LevelPrime
+  ~ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+  -->
+<templates id="template" xml:space="preserve">
+  <t t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+    <xpath expr="//div[hasclass('kitchen-order-line')]" position="inside">
+      <div>
+          <button class="remove-line-button" t-on-click="removeLine">
+            <i class="fa fa-trash-o" />
+          </button>
+        </div>
+    </xpath>
+  </t>
+</templates>

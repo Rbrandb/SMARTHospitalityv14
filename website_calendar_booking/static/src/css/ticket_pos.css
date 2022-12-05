@@ -1,0 +1,22 @@
+.header-text .header-status:before {
+    content: "\f103";
+    display: inline;
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+.header-text.active .header-status:before {
+    content: "\f102";
+    font: normal normal normal 14px/1 FontAwesome;
+}
+.ticket-screen .orders{
+    overflow-x: auto;
+    display: inline-grid !important;
+}
+.ticket-screen .orders .col {
+    min-width: 80px;
+}
+
+.ticket-screen .pos-search-bar .search ul {
+    z-index: 1;
+
+}

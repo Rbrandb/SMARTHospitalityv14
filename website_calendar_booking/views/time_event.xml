@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_management_asset_form" model="ir.ui.view">
+        <field name="name">time.slot.event.form</field>
+        <field name="model">time.slot.event</field>
+        <field name="arch" type="xml">
+            <form string="Time">
+                <sheet>
+                    <group>
+                        <group>
+                            <label for="name" string="Start Time"/>
+                            <div>
+                            <field class="oe_inline" name="name" widget="float_time"/>
+                            <field name="day_type"/>
+                            </div>
+                            <field name="slots"/>
+                            <field name="days" widget="many2many_tags" />
+<!--                            options="{'no_create': True,'no_edit': True}"-->
+                        </group>
+                        <group>
+                             <field name="type"/>
+                            <field name="slots_left" invisible="1"/>
+                            <field name="share_slot"/>
+                            <field name="mark_invisible"/>
+                            <field name="complete_name" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Block Days" name="time_slot_date">
+                            <field name="time_slot_date" context="{'default_name': parent.name,'default_slots':parent.slots,'default_days':parent.days,'default_day_type':parent.day_type,'default_type':parent.type,'default_share_slot':parent.share_slot}">
+                                <tree string="Block Days" editable="bottom">
+                                    <field name="date"/>
+                                     <field name="slots_left"/>
+                                     <field name="seats_left"/>
+                                    <field name="days"/>
+                                    <field name="name" invisible="1" widget="float_time"/>
+                                    <field name="slots" invisible="1"/>
+                                    <field name="share_slot" invisible="1"/>
+                                    <field name="type" invisible="1"/>
+
+
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="time_management_asset_tree" model="ir.ui.view">
+        <field name="name">time.slot.event.tree</field>
+        <field name="model">time.slot.event</field>
+        <field name="arch" type="xml">
+            <tree string="Time">
+                <field name="sequence" widget="handle"/>
+                <field name="id" invisible="1"/>
+                <field name="name" widget="float_time"/>
+                <field name="slots_left" invisible="1"/>
+
+                <field name="slots"/>
+                <field name="share_slot"/>
+                <field name="type"/>
+                <field name="days" widget="many2many_tags"/>
+<!--                <field name="lname"/>-->
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_time_mgmnt" model="ir.actions.act_window">
+        <field name="name">Time Frame</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">time.slot.event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Table for the company
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem
+            action="action_time_mgmnt"
+            id= "time_managment_main_submenu"
+            parent= "website_calendar_booking.reservation_config_main_menu"
+            sequence= "2"
+            name= "Time Frame"
+            />
+
+
+
+</odoo>

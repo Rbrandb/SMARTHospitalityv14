@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="kitchen_order_1" model="kitchen.pos.order">
+            <field name="name">Kitchen Orders</field>
+        </record>
+
+    </data>
+</odoo>

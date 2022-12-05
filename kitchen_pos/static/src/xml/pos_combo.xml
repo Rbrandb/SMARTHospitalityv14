@@ -1,0 +1,30 @@
+<templates id="pos_product_bundle_pack_template_extended" inherit_id="pos_combo.pos_product_bundle_pack_template" xml:space="preserve">
+    <t t-extend="modal-dialog" t-inherit="pos_combo.SelectComboProductPopupWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('footer')]" position="replace">
+            <div class="footer" style="background-color: #dbdbdc; color: #4e4c4c;bottom:0;position:fixed;">
+                <div class="button confirm-add" id="change_date" t-on-click="add_confirm"
+                     style="background-color: #ececec; color: #040404;"> Apply </div>
+                <div class="button cancel" style="background-color: #ececec; color: #040404;"
+                    t-on-click="go_back_screen"> Cancel </div>
+                <div class="button" style="background-color: #ececec; color: #040404;">
+                    <select style="width:100%;height:45px;background-color: #ececec; color: #040404;font-size:16px;font-family:'Lato-Bol';text-align:center" id="doneness_selection">
+                        <t t-foreach="props.doneness" t-as="dn">
+                            <option t-att-value="dn">
+                                    <t t-esc="dn" />
+                                </option>
+                            </t>          
+                    </select>
+                </div>
+                <div class="button serve_as" style="background-color: #ececec; color: #040404;">
+                    <select style="width:100%;height:45px;background-color: #ececec; color: #040404;font-size:16px;font-family:'Lato-Bol';text-align:center" id="serves_as_selection">
+                        <t t-foreach="props.serve_as" t-as="serve">
+                            <option t-att-value="serve">
+                                    <t t-esc="serve" />
+                                </option>
+                            </t>          
+                    </select>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>

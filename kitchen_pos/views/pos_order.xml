@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_pos_pos_kitchen_form" model="ir.ui.view">
+            <field name="name">pos.order.kitchen.form.view</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//field[@name="lines"]//tree//field[last()]' position="after">
+                    <field name="food_type" optional="show"/>
+                    <field name="food_temperature" optional="show"/>
+                    <field name="food_serve_as" optional="show"/>
+                    <field name="food_doneness" optional="show"/>
+<!--                    <field name="kitchen_note" optional="show"/>-->
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

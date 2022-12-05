@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="product_food_doneness_1_new" model="product.food.doneness">
+            <field name="name">Rare</field>
+        </record>
+
+        <record id="product_food_doneness_2_new" model="product.food.doneness">
+            <field name="name">Medium-Rare</field>
+        </record>
+
+        <record id="product_food_doneness_3_new" model="product.food.doneness">
+            <field name="name">Medium</field>
+        </record>
+
+        <record id="product_food_doneness_4_new" model="product.food.doneness">
+            <field name="name">Medium-Well</field>
+        </record>
+
+        <record id="product_food_doneness_5_new" model="product.food.doneness">
+            <field name="name">Well done</field>
+        </record>
+
+    </data>
+</odoo>

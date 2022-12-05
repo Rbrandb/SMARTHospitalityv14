@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_serve_as_user,product.serve.as.user,model_product_serve_as,base.group_user,1,1,1,1
+access_product_food_doneness_user,product.food.doneness.user,model_product_food_doneness,base.group_user,1,1,1,1
+access_kitchen_pos_order_user,kitchen.pos.order.user,model_kitchen_pos_order,base.group_user,1,1,1,1
+access_kitchen_pos_order_line_user,kitchen.pos.order.line.user,model_kitchen_pos_order_line,base.group_user,1,1,1,1
+access_kitchen_beep,access.kitchen.beep,model_kitchen_beep,base.group_user,1,1,1,1

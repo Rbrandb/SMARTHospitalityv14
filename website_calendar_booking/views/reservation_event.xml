@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="reservation_management_asset_form" model="ir.ui.view">
+            <field name="name">reservation.event.form</field>
+            <field name="model">reservation.event</field>
+            <field name="arch" type="xml">
+                <form string="Reservation">
+                	<header>
+                        <button string="Validate" class="oe_highlight"
+                            name="button_validate_action" type="object"
+                            attrs="{'invisible':[('state', '!=', 'draft')]}"/>
+                        <button string="Reject" class="oe_highlight"
+                            name="button_reject_action" type="object"
+                            attrs="{'invisible':[('state', '!=', 'draft')]}"/>
+                        <button string="Reset" class="oe_highlight"
+                            name="button_reset_action" type="object"
+                            attrs="{'invisible':[('state', 'in', ['draft','available'])]}"/>
+                        <button string="Free" class="oe_highlight"
+                            name="button_available_action" type="object"
+                            attrs="{'invisible':[('state', 'in', ['draft','available'])]}"/>
+                        <button string="Send Email" class="oe_highlight"
+                            name="button_sendMail_action" type="object"
+                            attrs="{'invisible':[('state', '=', 'draft')]}"/>
+<!--                        <button string="Inactive" class="oe_highlight"-->
+<!--                            name="make_archive" type="object"-->
+<!--                            />-->
+                		<field name="state" widget="statusbar"  statusbar_visible="draft,confirm,reject"/>
+                	</header>
+                	<sheet>
+                         <div class="oe_button_box" name="inactive_box">
+                            <button class="oe_stat_button"
+
+                            >
+                                <field name="inactive" widget="boolean_toggle"/>
+                                <span attrs="{'invisible': [('inactive', '=', True)]}">Archive</span>
+                                <span attrs="{'invisible': [('inactive', '=', False)]}">Archived</span>
+                            </button>
+                         </div>
+                        <group>
+                            <group>
+                                <field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+<!--                                <field name="table"/>-->
+                                <field name="browser_info" invisible="1"/>
+                                <field name="pos_table_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="table_time_slot" invisible="1"/>
+                                <field name="inactive" widget="boolean_toggle" invisible="1"/>
+                                <field name="booking_email" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="phone" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="pax" attrs="{'readonly': [('state', '!=', 'draft')]}" invisible="1"/>
+                                <field name="pax_person" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="date_boolean" invisible="1"/>
+
+                                <field name="date_str" invisible="1" placeholder="Place Date in that order example: 2022-07-01 13:30:38" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="start" invisible="0" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="user_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="type" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="code"  attrs="{'readonly': [('state', 'in', ['confirm','reject'])]}"/>
+                                <field name="time_slot_event"  attrs="{'readonly': [('state', 'in', ['confirm','reject'])]}"/>
+                                <field name="email_reminders" invisible="1"/>
+                                <field name="advance" invisible="1"/>
+
+
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+    </record>
+     <record id="reservation_management_asset_tree" model="ir.ui.view">
+        <field name="name">reservation.event.tree</field>
+        <field name="model">reservation.event</field>
+        <field name="arch" type="xml">
+            <tree string="Reservation">
+                <field name="code"/>
+                <field name="name"/>
+<!--                <field name="table"/>-->
+                <field name="pos_table_id"/>
+<!--                <field name="table_time_slot"/>-->
+                <field name="booking_email"/>
+                <field name="phone"/>
+                <field name="pax" invisible="1"/>
+                 <field name="pax_person"/>
+                <field name="description"/>
+                <field name="date_str" invisible="1"/>
+                <field name="start" />
+                <field name="state"/>
+                <field name="type"/>
+                <field name="browser_info"/>
+<!--                <field name="duration"/>-->
+            </tree>
+        </field>
+    </record>
+    <record id="reservationt_management_asset_search" model="ir.ui.view">
+            <field name="name">reservation.event.search.view</field>
+            <field name="model">reservation.event</field>
+            <field name="arch" type="xml">
+                <search string="Reservation">
+                	<field name="name"/>
+                	<field name="booking_email"/>
+                	<field name="phone"/>
+                    <field name="pax"/>
+                    <field name="description"/>
+                    <field name="start"/>
+                    <field name="duration"/>
+                    <separator/>
+                    <filter name="active" string="Active" domain="[('inactive', '=', False)]"/>
+                    <filter name="inactive" string="Archived" domain="[('inactive', '=', True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="name" string="Name" domain="[]" context="{'group_by':'name'}"/>
+                        <filter name="state" string="State" domain="[]" context="{'group_by':'state'}"/>
+                        <filter name="date_str" string="Date Time" domain="[]" context="{'group_by':'date_str'}"/>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    <record id="action_reservationt_mgmnt" model="ir.actions.act_window">
+        <field name="name">Reservation Management</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reservation.event</field>
+        <field name="domain">['|', ('inactive', '=', True), ('inactive', '=', False)]</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="reservationt_management_asset_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Reservation for the company
+            </p>
+        </field>
+    </record>
+
+
+
+    <menuitem name="Reservation Management"
+        id="reservation_management_main_menu"
+        sequence="31"
+    />
+
+    <menuitem
+            action="action_reservationt_mgmnt"
+            id= "reservationt_managment_main_submenu"
+            parent= "reservation_management_main_menu"
+            sequence= "2"
+            name= "Reservation Management"
+            />
+
+
+
+</odoo>

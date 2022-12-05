@@ -1,0 +1,142 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="website_calendar_booking.calendar_booking_modal">
+        <div class="modal fade" id="oe_website_calendar_modal">
+            <div class="modal-dialog modal-content">
+                <div class="modal-header alert alert-info mb0">
+<!--                    <button type="button" class="close" data-dismiss="modal">-->
+<!--                        <span aria-hidden="true">x</span>-->
+<!--                    </button>-->
+                    <h4 class="modal-title">Select Time Frame</h4>
+                    <a class="close" data-dismiss="modal" href="#" aria-label="Close">x</a>
+<!--                    <span id="date_span"></span>-->
+                </div>
+                <div class="slots_available_1" style="text-align: center;display: none;"><h4 style="color:red">Time Frame not available</h4></div>
+                <span id="spsrry" style="color:#74effc;display: none;" ></span>
+                <span id="spsrry2" style="color:#74effc;display: none;" ></span>
+                <div class="modal-body">
+                    <form method="GET" action="/book/calendar/create">
+                        <div class="form-group">
+                            <label for="date_span">Date</label>
+                            <input id="date_span" name="date_span" type="text" class="form-control" readonly="1"/>
+                        </div>
+                        <div class="form-group">
+                            <strong class="selectslot">Select Time Frame*</strong>
+                            <span class="errormsg" style="color:red;display: none;"></span>
+                            <br></br>
+                            <span class="timekitchen" style="color:red;font-size: 13px;"></span>
+                            <div class="row bk_border bk_modal_slots">
+<!--                                <t t-foreach="day_slots" t-as="d_slot">-->
+<!--                                    <t t-set="bk_av_qty" t-value="product.sudo().get_bk_slot_available_qty(d_slot['slot']['current_date'], d_slot['slot']['id'])"/>-->
+<!--                                <div class="col-12" style="padding: 0;">-->
+<!--                                    <span class="pull-left" style="font-size: 16px;margin-top: 22px;font-weight: bold;">-->
+<!--                                        Select Plan1:-->
+<!--                                    </span>-->
+<!--                                </div>-->
+<!--                                    col-md-3 col-md-4-->
+
+                                <div t-attf-class="col-12 bk_slot_div1 ">
+<!--                                        <span t-att-class="'bk_slot_div bk_slot_div'" t-att-data-time_slot_id="1" t-att-data-slot_plans="1">-->
+<!--                                                10-11-->
+<!--                                            &lt;!&ndash;                                            <t t-esc="10-11"/>&ndash;&gt;-->
+<!--                                        </span>-->
+                    <!--                    <span t-esc="bk_av_qty"/>-->
+
+                                    <input type="hidden" name="start_timeslot" id="start_timeslot"/>
+                                    <input type="hidden" name="browser_info" id="browser_info"/>
+                                    <input type="text" name="span_select" id="span_select" style="display: none;" required="1"/>
+                                    </div>
+<!--                                </t>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+<!--                            <label for="name">Name*</label>-->
+                            <input name="name" id="name" type="hidden" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+<!--                            <label for="email">Email*</label>-->
+                            <input name="email" id="email" type="hidden" class="form-control"/>
+                        </div>
+                         <div class="form-group">
+<!--                            <label for="phone">Your Phone*</label>-->
+                            <input name="phone" id="phone" type="hidden" class="form-control"/>
+                            <input name="spancompanyphone" id="spancompanyphone" type="hidden" class="form-control"/>
+                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="pax">Persons*</label>-->
+<!--                            <div class="call_mundo" style="text-align: center;display: none;"><h4 style="color:red">For reservations with more than 6 guest please call us on <span id="spanphone"/> </h4></div>-->
+<!--                            <select name="Pax" class="form-control" id="Pax">-->
+<!--                                <option class="form-control" t-att-value="1" ><t t-esc="1"/></option>-->
+<!--                                <option class="form-control" t-att-value="2"><t t-esc="2"/></option>-->
+<!--                                <option class="form-control" t-att-value="3"><t t-esc="3"/></option>-->
+<!--                                <option class="form-control" t-att-value="4"><t t-esc="4"/></option>-->
+<!--                                <option class="form-control" t-att-value="5"><t t-esc="5"/></option>-->
+<!--                                <option class="form-control" t-att-value="6"><t t-esc="6"/></option>-->
+<!--&lt;!&ndash;                                <option class="form-control" t-att-value="morethan6"><span>More than 6</span></option>&ndash;&gt;-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <script type="text/javascript">-->
+<!--                            $('select').on('change', function() {-->
+<!--&lt;!&ndash;                              alert( this.value );&ndash;&gt;-->
+<!--&lt;!&ndash;                                if(this.value == "More than 6"){&ndash;&gt;-->
+<!--                                    $(".call_mundo").show();-->
+<!--&lt;!&ndash;                                }&ndash;&gt;-->
+<!--&lt;!&ndash;                                else{&ndash;&gt;-->
+<!--&lt;!&ndash;                                    $(".call_mundo").hide();&ndash;&gt;-->
+<!--&lt;!&ndash;                                }&ndash;&gt;-->
+<!--                            });-->
+
+<!--                        </script>-->
+
+<!--                         <div class="form-group">-->
+<!--                             <label for="time_span">Time</label>-->
+<!--                             <div class="input-group datetime"-->
+<!--                                 id="datetimepickerID"-->
+<!--                                 data-target-input="nearest">-->
+<!--                                <input type="text"-->
+<!--                                       class="form-control datetimepicker-input"-->
+<!--                                       data-target="#datetimepickerID"-->
+<!--                                       name="my_datetimepicker" id="my_datetimepicker" required="1"/>-->
+<!--                                <div class="input-group-append"-->
+<!--                                     data-target="#datetimepickerID"-->
+<!--                                     data-toggle="datetimepicker">-->
+<!--                                    <div class="input-group-text"><i class="fa fa-clock-o"></i></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <script type="text/javascript">-->
+<!--                                $(function () {-->
+<!--                                    $('#datetimepickerID').datetimepicker({-->
+<!--                                     format: 'LT'-->
+<!--                                    }-->
+<!--                                );-->
+<!--                                });-->
+<!--                            </script>-->
+<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="type">Type*</label>
+                            <input id="Type" name="Type" type="text" class="form-control" readonly="1"/>
+<!--                            <select name="Type" class="form-control" readonly="1">-->
+<!--                                <option class="form-control" t-att-value="BreakFast">BreakFast</option>-->
+<!--                                <option class="form-control" t-att-value="Lunch">Lunch</option>-->
+<!--                                <option class="form-control" t-att-value="Dinner">Dinner</option>-->
+<!--                            </select>-->
+                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="comment">Special Occasions?</label>-->
+<!--                            <textarea id="comment" name="comment" class="form-control"/>-->
+<!--                            <span id="spocc" style="color:green;display: none;" >We will do the best we can to honor your request and make your evening a great experience</span>-->
+<!--                        </div>-->
+
+                        <input type="hidden" name="start" id="booking_form_start" />
+                        <input type="hidden" name="calendar_id" id="booking_form_calendar_id" />
+                        <input type="submit" class="btn btn-primary btn-lg subbtn" value="Next"/>
+                    </form>
+                </div>
+                <!--<div class="modal-footer">
+		    <button id="cancel" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+		    <button id="submit_calendar_booking"  class="btn btn-danger">Submit</button>
+                </div>-->
+            </div>
+        </div>
+    </t>
+
+</templates>

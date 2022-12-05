@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<!--3rd step-->
+    <t t-name="ReservationTicketScreen" owl="1">
+        <div class="ticket-screen clientlist-screen screen" t-on-activate-edit-mode="activateEditMode">
+            <div class="screen-content">
+                <div class="top-content">
+                    <div t-if="!state.detailIsShown &amp;&amp; !state.selectedClient" class="button new-customer" role="img" aria-label="Add a customer"
+                          t-on-click="trigger('activate-edit-mode', { isNewClient: true })"
+                          title="Add a customer">
+                        <t t-if="!env.isMobile">
+                            Create
+                        </t>
+                        <t t-else="">
+                            <i class="fa fa-plus"></i>
+                        </t>
+                    </div>
+                    <div t-if="isNextButtonVisible" t-on-click="clickNext"
+                          class="button next highlight">
+                        <t t-if="!env.isMobile">
+                            <t t-esc="nextButton.text" />
+                        </t>
+                        <t t-else="">
+                            <i t-if="nextButton.command === 'deselect'" class="fa fa-trash"></i>
+                            <i t-if="nextButton.command === 'set'" class="fa fa-check"></i>
+                        </t>
+                    </div>
+                    <div class="button" t-if="state.detailIsShown" t-on-click="trigger('click-save')">
+                        <t t-if="!env.isMobile">
+                            <i class="fa fa-floppy-o"/>
+                            <span> Save</span>
+                        </t>
+                        <t t-else="">
+                            <i class="fa fa-floppy-o"/>
+                        </t>
+                    </div>
+                    <div class="button back" t-on-click="back">
+                        <t t-if="!env.isMobile">Close</t>
+                        <t t-else="">
+                            <i class="fa fa-undo"></i>
+                        </t>
+                    </div>
+                    <div t-if="!state.detailIsShown" class="controls">
+                        <SearchBar config="searchBarConfig" placeholder="'Search Tickets...'"/>
+                        <span class="search-clear-client"></span>
+                    </div>
+                </div>
+                <section class="full-content">
+                    <div class="client-window">
+                        <section class="subwindow collapsed">
+                            <div class="subwindow-container collapsed">
+                                <div t-if="state.detailIsShown" class="client-details-contents subwindow-container-fix">
+                                    <ReservationDetailsEdit t-props="state.editModeProps"
+                                                       t-on-cancel-edit="cancelEdit"/>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="subwindow list">
+                            <div class="subwindow-container">
+                                <div t-if="!state.detailIsShown" class="subwindow-container-fix scrollable-y">
+                                    <div class="orders">
+                                        <div class="header-row">
+                                            <div class="col start">Name</div>
+                                            <div class="col start">Date/Time</div>
+                                            <div class="col center">Phone</div>
+                                            <div class="col center">PAX</div>
+                                            <div class="col center">Description</div>
+                    <!--                        <div class="col start"><span style="margin-left: 30px;">State</span></div>-->
+                                            <div class="col center">Table</div>
+                                            <div class="col start"></div>
+                                            <!--                        <div class="col center very-narrow" name="delete"></div>-->
+                                        </div>
+                                        <t t-set="arrList" t-value="getStates"/>
+                                        <t t-foreach="arrList" t-as="arr" >
+                                            <div class="pointer" >
+                                                <div class="header" t-on-click="trigger('loading-expan_collapse-callback')">
+                                                    <div class="order-row" style="background: black;color: white;font-weight: bolder;">
+                                                        <div class="col start wide title">
+                                                            <t t-if="arr =='draft'">
+                                                                 <span class="header-text " >Future Reservation <span class="header-status"/></span>
+                                                            </t>
+                                                            <t t-if="arr =='confirm'">
+                                                                 <span class="header-text">Confirm <span class="header-status"/></span>
+                                                            </t>
+                                                            <t t-if="arr =='available'">
+                                                                 <span class="header-text">Freed <span class="header-status"/></span>
+                                                            </t>
+                    <!--                                        <t t-if="arr =='reject'">-->
+                    <!--                                             <span class="header-text">Cancelled</span>-->
+                    <!--                                        </t>-->
+                                                        </div>
+                                                        <div class="col start"> </div>
+                                                        <div class="col start"></div>
+                                                        <div class="col start"></div>
+                                                        <div class="col start"></div>
+                                                        <div class="col start"></div>
+                                                        <div class="col start"></div>
+                                                        <div class="col start"></div>
+                                                    </div>
+                                                    <t t-foreach="filteredOrderList" t-as="order" t-key="order.cid">
+                                                         <div class="content" style="display: block;">
+                                                            <div t-if="order.state == arr" class="order-row">
+                                                                <div class="col start">
+                                                                    <t t-esc="order.name"></t>
+                                                                </div>
+                                                                <div class="col start wide">
+                                                                    <t t-esc="order.date_str"></t>
+                                                                </div>
+                                                                <div class="col start wide">
+                                                                    <t t-esc="order.phone"></t>
+                                                                </div>
+                                                                <div class="col center">
+                                                                    <t t-esc="order.pax_person[1]"></t>
+                                                                </div>
+                                                                <div class="col start wide">
+                                                                    <span style="margin-left: 9px;" t-esc="order.description"></span>
+                                                                </div>
+                                <!--                                <div class="col start">-->
+                                <!--                                    <t t-if="order.state == 'draft'">-->
+                                <!--                                        <span class="draft" t-att-id="order.id" t-att-data-id="order.id">New</span>-->
+                                <!--                                    </t>-->
+                                <!--                                    <t t-if="order.state == 'confirm'">-->
+                                <!--                                        <span class="confirm" t-att-id="order.id" t-att-data-id="order.id">Confirmed</span>-->
+                                <!--                                     </t>-->
+                                <!--                                    <t t-if="order.state == 'available'">-->
+                                <!--                                        <span class="available" t-att-id="order.id" t-att-data-id="order.id">Freed</span>-->
+                                <!--                                     </t>-->
+
+                                <!--                                </div>-->
+                                                                <div class="col start ">
+
+                                                                    <select name="pos_table_id" t-on-change="OnchangeTable">
+                                                                        <option value=""></option>
+                                                                        <t t-foreach="env.pos.tables" t-as="table" t-key="table.id">
+                                                                            <option t-att-value="table.id" t-att-id="order.id" t-att-data-order-id="order.id"
+                                                                                    t-att-selected="order.pos_table_id ? ((table.id === order.pos_table_id[0]) ? true : undefined) : undefined">
+                                                                                <t t-esc="table.name"/>
+                                                                            </option>
+                                                                            <span t-att-id="order.id" style="color:red;display: none;" ></span>
+                                                                        </t>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col start">
+                                                                    <t t-set="_item_class" t-value="order"/>
+                                                                    <t t-if="order.state=='draft'">
+                                                                        <button t-attf-class="#{_item_class} state validate" t-att-id="order.id"
+                                                                                t-att-data-id="order.id" t-att-data-order-id="order.id"
+                                                                                t-on-click="button_validate_action(order)">Validate</button>
+                                                                    </t>
+                                                                    <t t-if="order.state=='confirm'">
+                                                                        <button t-attf-class="#{_item_class} state free" t-att-id="order.id"
+                                                                                t-att-data-id="order.id" t-att-data-order-id="order.id"
+                                                                                t-on-click="button_available_action(order)">Free</button>
+                                                                    </t>
+                                                                    <button t-attf-class="#{_item_class} state free" style="display:none;"
+                                                                            t-att-id="order.id" t-att-data-id="order.id"
+                                                                            t-att-data-order-id="order.id"
+                                                                            t-on-click="button_available_action(order)">Free</button>
+                                                                </div>
+
+                                                                <!--                            <div class="col center very-narrow delete-button" name="delete" t-on-click.stop="deleteOrder(order)">-->
+                                                                <!--                                <i class="fa fa-trash" aria-hidden="true"></i>-->
+                                                                <!--                            </div>-->
+                                                                <!--                            <div t-else="" class="col center very-narrow delete-button"></div>-->
+                                                                <!--                            <div class="col center very-narrow delete-button"></div>-->
+                                                            </div>
+                                                         </div>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+
+</templates>

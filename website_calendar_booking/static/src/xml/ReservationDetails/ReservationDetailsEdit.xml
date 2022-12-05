@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ReservationDetailsEdit" owl="1">
+        <section class="client-details edit">
+            <div class="client-details-box clearfix">
+                <div class="client-details-left">
+                    <div class="client-detail">
+                        <span class="label">Name</span>
+                        <input class="detail client-address-street" name="name"
+                              t-on-change="captureChange" placeholder="Name" />
+                    </div>
+                    <div class="client-detail">
+                        <span class="label">Email</span>
+                        <input class="detail client-address-street" name="booking_email"
+                             t-on-change="captureChange"  placeholder="example@gmail.com" />
+                    </div>
+                    <div class="client-detail">
+                        <span class="label">Phone</span>
+                        <input class="detail client-address-street" name="phone"
+                             t-on-change="captureChange"  placeholder="+111111" />
+                    </div>
+                    <div class="client-detail">
+                        <span class="label">Time Slot</span>
+                        <select t-on-change="captureChange" name="time_slot_event" class="form-control" id="time_slot_event">
+                            <option value=""></option>
+                            <t t-foreach="env.pos.times_slot" t-as="time" t-key="time.id">
+                                <option t-att-value="time.id" t-att-id="time.id" t-att-data-order-id="time.id">
+                                    <t t-esc="time.display_name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="client-detail">
+                        <span class="label">Type</span>
+                        <select t-on-change="captureChange" name="type" class="form-control" id="type">
+                            <option value=""></option>
+                            <option class="form-control" t-att-value="Lunch" >Lunch</option>
+                            <option class="form-control" t-att-value="Dinner">Dinner</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="client-details-right">
+                     <div class="client-detail">
+                        <span class="label">Date/Time</span>
+                        <input class="detail client-address-street" name="date_str"
+                             t-on-change="captureChange"  placeholder="2022-08-01 19:20:47 i.e Date Time Slot" />
+                    </div>
+                    <div class="client-detail">
+                        <span class="label">PAX</span>
+                        <select t-on-change="captureChange" name="pax" class="form-control" id="pax">
+                            <option value=""></option>
+                            <option class="form-control" t-att-value="1" ><t t-esc="1"/></option>
+                            <option class="form-control" t-att-value="2"><t t-esc="2"/></option>
+                            <option class="form-control" t-att-value="3"><t t-esc="3"/></option>
+                            <option class="form-control" t-att-value="4"><t t-esc="4"/></option>
+                            <option class="form-control" t-att-value="5"><t t-esc="5"/></option>
+                            <option class="form-control" t-att-value="6"><t t-esc="6"/></option>
+<!--                                <option class="form-control" t-att-value="morethan6"><span>More than 6</span></option>-->
+                        </select>
+                    </div>
+                     <div class="client-detail">
+                        <span class="label">Table</span>
+                        <select t-on-change="captureChange" name="pos_table_id" class="form-control" id="pos_table_id">
+                            <option value=""></option>
+                            <t t-foreach="env.pos.tables" t-as="table" t-key="table.id">
+                                <option t-att-value="table.id" t-att-id="table.id" t-att-data-order-id="table.id">
+                                    <t t-esc="table.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                     <div class="client-detail">
+                        <span class="label">Special Occasions?</span>
+                        <textarea t-on-change="captureChange" id="description" name="description" class="detail client-address-street" style="width: 323px; height: 22px;"/>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </t>
+
+</templates>

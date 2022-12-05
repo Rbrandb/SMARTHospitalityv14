@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="group_kitchen_notify" model="res.groups">
+            <field name="name">Kitchen Notify</field>
+        </record>
+
+    </data>
+</odoo>
